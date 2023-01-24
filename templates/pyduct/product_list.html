@@ -1,0 +1,35 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<div class="container my-5">
+    <table class="table table-striped">
+        <thead>
+        <tr class="table-info">
+            <th>번호</th>
+            <th>상품명</th>
+            <th>수량(개)</th>
+            <th>금액(원)</th>
+            <th>일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if product_list %}
+        {% for product in product_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'pyduct:detail' product.id %}">
+                    {{ product.pd_name }}
+                </a>
+            </td>
+            <td>{{ product.pd_qty }}</td>
+            <td>{{ product.pd_amt }}</td>
+            <td>{{ product.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없음.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
